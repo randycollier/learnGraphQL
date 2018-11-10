@@ -6,6 +6,7 @@ const outputDirectory = 'dist';
 
 module.exports = {
   entry: './src/client/index.js',
+  target : 'node',
   output: {
     path: path.join(__dirname, outputDirectory),
     filename: 'bundle.js'
@@ -15,6 +16,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
+        query: {
+          babelrc: false,
+          presets: [["env", { modules: false }]],
+        },
         use: {
           loader: 'babel-loader'
         }
